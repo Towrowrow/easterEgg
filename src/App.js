@@ -10,6 +10,7 @@ import Intro from "./intro";
 import { NavLink } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
+import gourou from './images/benoit_superboss.png';
 
 class App extends Component {
   constructor(props) {
@@ -43,7 +44,10 @@ class App extends Component {
       isWinner: null,
 
       // console
-      chat: ['tutu']
+      chat: ['tutu'],
+
+      //benoit
+      isGourou: false
 
     }
     this.victory = this.victory.bind(this);
@@ -72,6 +76,7 @@ class App extends Component {
   takeUserName = () => {
 
     this.closeModal()
+    this.apiEggs()
     console.log(`Welcome ${this.state.userName}`)
   }
 
@@ -87,7 +92,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.powerEgg !== this.state.powerEgg) {
-      this.setState({ lifeEgg: lifeEgg(this.state.powerEgg) })
+      this.setState({ lifeEgg: lifeEgg(this.state.powerEgg, this.state.isGourou) })
     }
     if (prevState.skillsMonster !== this.state.skillsMonster) {
       this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster) })
@@ -127,20 +132,33 @@ class App extends Component {
 
   // api calls
   apiEggs() {
-    // Récupération de l'employé via fetch
-    fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
-      .then(response => response.json())
-      .then(data => {
-        // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
-        this.setState({
-          nameEgg: data.name,
-          imageEgg: data.image,
-          caliberEgg: data.caliber,
-          farmingEgg: data.farming,
-          rarityEgg: data.rarity,
-          powerEgg: data.power,
-        });
+    if (this.state.userName === 'benoit') {
+      this.setState({
+        nameEgg: "Le GRAND GOUROUUU!",
+        imageEgg: gourou,
+        caliberEgg: "Christ cosmique",
+        farmingEgg: "from Bugarache",
+        rarityEgg: "Unique",
+        powerEgg: "murmure à l'oreille des devices",
+        isGourou: true,
       });
+    } else {
+      fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
+        .then(response => response.json())
+        .then(data => {
+          // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
+          this.setState({
+            nameEgg: data.name,
+            imageEgg: data.image,
+            caliberEgg: data.caliber,
+            farmingEgg: data.farming,
+            rarityEgg: data.rarity,
+            powerEgg: data.power,
+          });
+        });
+    }
+    // Récupération de l'employé via fetch
+
   }
 
   apiMonster() {
