@@ -139,7 +139,7 @@ class App extends Component {
         caliberEgg: "Christ cosmique",
         farmingEgg: "from Bugarache",
         rarityEgg: "Unique",
-        powerEgg: "murmure à l'oreille des devices",
+        powerEgg: "Power: murmure à l'oreille des devices",
         isGourou: true,
       });
     } else {
@@ -179,6 +179,14 @@ class App extends Component {
       });
   }
 
+  sayMyName = () => {
+    if (this.state.isGourou) {
+      return "Ode au grand Gourou !"
+    } else {
+      return this.state.welcomeMessage;
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -193,7 +201,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <h2> {this.state.welcomeMessage}</h2>
+        <h2> {this.sayMyName()}</h2>
         <div className="row justify-content-center my-5">
 
 
