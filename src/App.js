@@ -4,6 +4,7 @@ import './App.css';
 import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
+import characterLife from './functions/characterLife';
 
 class App extends Component {
   constructor(props) {
@@ -28,8 +29,15 @@ class App extends Component {
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
-
+    this.updateLife();
   }
+
+  updateLife() {
+    console.log(this.state.powerEgg);
+    const newLife = characterLife(this.state.powerEgg);
+    this.setState({lifeEgg: newLife});
+  }
+
   apiEggs() {
     // Récupération de l'employé via fetch
     fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
@@ -54,7 +62,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
-        console.log(data);
+    
         this.setState({
           nameMonster: data.name,
           imageMonster: data.image,
@@ -99,6 +107,7 @@ class App extends Component {
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
             />
+           
           </div>
         </div>
 
