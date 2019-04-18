@@ -11,6 +11,9 @@ import { NavLink } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
 import gourou from './images/benoit_superboss.png';
+import Droppable from './dragNdropComp/Droppable';
+import Draggable from './dragNdropComp/Draggable';
+
 
 class App extends Component {
   constructor(props) {
@@ -47,17 +50,25 @@ class App extends Component {
       chat: [],
 
       //benoit
-      isGourou: false
+      isGourou: false,
 
+      //CSS Break
+      breakCSS: true
 
     }
     this.victory = this.victory.bind(this);
+    this.fixCSS = this.fixCSS.bind(this);
   }
 
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
     this.openModal();
+  }
+
+  fixCSS() {
+    window.loadCSS('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+    this.setState({ breakCSS: false });
   }
 
 
@@ -202,7 +213,21 @@ class App extends Component {
 
 
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <div className="d-flex align-items-center">
+            <img src={logo} className="App-logo" alt="logo" />
+            <div className="d-flex">
+              <Droppable id="dr1" fixCSS={this.fixCSS}>
+              </Droppable>
+              <p>Omelet Wars&lsaquo;/h1&rsaquo;</p>
+            </div>
+            <img src={logo} className="App-logo" alt="logo" />
+            <Droppable id="dr2">
+              <Draggable id="item1">
+                <div>&lsaquo;h1&rsaquo;</div>
+              </Draggable>
+            </Droppable>
+          </div>
+
         </header>
         <h2> {this.sayMyName()}</h2>
         <div className="row justify-content-center my-5">
