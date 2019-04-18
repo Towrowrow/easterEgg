@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Eggs from './Eggs';
-import Rooms from './rooms';
+import Monsters from './Monsters';
 import Actions from './actions';
 
 class App extends Component {
@@ -63,7 +63,7 @@ class App extends Component {
             />
           </div>
           <div className="col-3">
-            <Rooms name='monster' />
+            <Monsters name='monster' />
           </div>
         </div>
 
