@@ -4,72 +4,29 @@ import './perso.css'
 
 
 class Eggs extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: "",
-      image: "",
-      caliber: "",
-      farming: "",
-      rarity: "",
-      power: "",
-      victory: null,
-      life: this.props.life
-    }
-
-  }
-
-  componentDidMount() {
-    this.apiEggs();
-
-  }
-  apiEggs() {
-    // Récupération de l'employé via fetch
-    fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
-      .then(response => response.json())
-      .then(data => {
-        // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
-        console.log(data);
-        this.setState({
-          name: data.name,
-          image: data.image,
-          caliber: data.caliber,
-          farming: data.farming,
-          rarity: data.rarity,
-          power: data.power,
-
-        });
-        console.log(this.state.caliber)
-      });
-  }
-
-
-
   render() {
     return (
       <div>
-        {this.state.name &&
+        {this.props.nameEgg &&
           <div className="card bg-light">
-            <img src={this.state.image} className="card-img-top persoImage" alt="Your knight" />
+            <img src={this.props.imageEgg} className="card-img-top persoImage" alt="Your knight" />
             <div className="card-body">
-              <h5 className="card-title">{this.state.name}</h5>
+              <h5 className="card-title">{this.props.nameEgg}</h5>
               <p className="card-text">
-                <span className="badge badge-danger">♥ {this.props.life}</span>
+                <span className="badge badge-danger">♥ {this.props.lifeEgg}</span>
               </p>
               <p className="card-text">
-                <span className="badge badge-primary">caliber : {this.state.caliber}</span>
+                <span className="badge badge-primary">caliber : {this.props.caliberEgg}</span>
               </p>
               <p className="card-text">
-                <span className="badge badge-primary">Farming : {this.state.farming}</span>
+                <span className="badge badge-primary">Farming : {this.props.farmingEgg}</span>
               </p>
               <p className="card-text">
-                <span className="badge badge-primary">Rarity : {this.state.rarity}</span>
+                <span className="badge badge-primary">Rarity : {this.props.rarityEgg}</span>
               </p>
               <p>
-                <span className="badge badge-warning">{this.state.power}</span>
+                <span className="badge badge-warning">{this.props.powerEgg}</span>
               </p>
-
-
             </div>
           </div>
         }
