@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { NavLink } from "react-router-dom";
 
 
 
@@ -8,10 +8,12 @@ class Intro extends Component {
 
   render() {
     return (
-      <div>
-        <div className="ButtonSW">
-          <button className="BoutonSW">JOUER</button>
-        </div>
+      <div className="intro">
+        <NavLink to="/">
+          <div className="ButtonSW">
+            <button className="BoutonSW">JOUER</button>
+          </div>
+        </NavLink>
         <section className="star-wars">
 
           <div className="crawl">
@@ -31,7 +33,6 @@ class Intro extends Component {
             <p>Vous êtes notre dernier espoir, Capitaine Tête d'oeuf, menez vos troupes à la victoire !….</p>
           </div>
         </section>
-
       </div >
     );
   }

@@ -5,6 +5,9 @@ import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
 import characterLife from './functions/characterLife';
+import { Route, Switch } from 'react-router-dom';
+import Intro from "./intro";
+import { NavLink } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -111,11 +114,21 @@ class App extends Component {
               speciesMonster={this.state.speciesMonster}
             />
 
-          </div>
-          <p>{this.state.powerEgg}</p>
-        </div>
 
-      </div >
+
+            <Switch>
+              <Route exact path="/generique" component={Intro} />}
+            </Switch>
+
+            <NavLink to={`/generique`} >
+
+              <button>Générique</button>
+
+            </NavLink>
+
+          </div>
+        </div>
+      </div>
     );
   }
 }
