@@ -11,10 +11,7 @@ const droppableStyle = {
 class Droppable extends Component {
 
   drop = (event) => {
-    // 
-    console.log(event);
-    const data = event.dataTransfer.getData('transfer');
-    event.target.appendChild(document.getElementById(data));
+    this.props.fixCSS();
   }
 
   allowDrop = (event) => {

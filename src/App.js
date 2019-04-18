@@ -10,9 +10,9 @@ import Intro from "./intro";
 import { NavLink } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
-import DragNDrop from './dragNdropComp/DragNDrop';
 import Droppable from './dragNdropComp/Droppable';
 import Draggable from './dragNdropComp/Draggable';
+
 
 class App extends Component {
   constructor(props) {
@@ -46,16 +46,25 @@ class App extends Component {
       isWinner: null,
 
       // console
-      chat: ['tutu']
+      chat: ['tutu'],
+
+      //CSS Break
+      breakCSS: true
 
     }
     this.victory = this.victory.bind(this);
+    this.fixCSS = this.fixCSS.bind(this);
   }
 
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
     this.openModal();
+  }
+
+  fixCSS() {
+    window.loadCSS('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+    this.setState({ breakCSS: false });
   }
 
 
@@ -179,9 +188,9 @@ class App extends Component {
           <div className="d-flex align-items-center">
             <img src={logo} className="App-logo" alt="logo" />
             <div className="d-flex">
-              <Droppable id="dr1">
+              <Droppable id="dr1" fixCSS={this.fixCSS}>
               </Droppable>
-              <p>Omelette wars&lsaquo;/h1&rsaquo;</p>
+              <p>Omelet Wars&lsaquo;/h1&rsaquo;</p>
             </div>
             <img src={logo} className="App-logo" alt="logo" />
             <Droppable id="dr2">
