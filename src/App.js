@@ -1,26 +1,73 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Perso from './perso';
+import Rooms from './rooms';
+import Actions from './actions';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      persoLife: 10,
+      persoGold: 5,
+      disabled: false
+    }
+  }
+
+  canIDrink = () => {
+    if (this.state.persoGold - 2 < 2) {
+      return this.setState({
+        disabled: true
+      })
+    } else {
+      return this.setState({
+        disabled: false
+      })
+    }
+  }
+
+  drinkPotion = () => {
+    return (
+      this.setState({
+        persoLife: this.state.persoLife + 3,
+        persoGold: this.state.persoGold - 2,
+      })
+    );
+  }
+
+  healing = () => {
+    this.drinkPotion();
+    this.canIDrink();
+    return;
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
-      </div>
+        <div className="row justify-content-center my-5">
+          <div className="col-3">
+            <Perso
+              life={this.state.persoLife}
+              gold={this.state.persoGold}
+              disabled={this.state.disabled}
+            />
+          </div>
+          <div className="col-3">
+            <Actions
+              healing={this.healing}
+              disabled={this.state.disabled}
+            />
+          </div>
+          <div className="col-3">
+            <Rooms name='monster' />
+          </div>
+        </div>
+
+      </div >
     );
   }
 }
