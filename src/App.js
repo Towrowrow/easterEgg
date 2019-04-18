@@ -32,6 +32,21 @@ class App extends Component {
     this.updateLife();
   }
 
+ eggLife (skills) {
+    let totPoint = 0;
+    skills.map(skill => {
+      return totPoint += Number(skill.charAt(skill.length - 1));
+    });
+    return totPoint;
+  }
+
+characterLife (power) {
+    let totPoint = Number(power.charAt(power.length - 1));
+    return totPoint;
+  }
+  
+  
+
   updateLife() {
     console.log(this.state.powerEgg);
     const newLife = characterLife(this.state.powerEgg);
@@ -107,6 +122,7 @@ class App extends Component {
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
             />
+            <Eggs lifeEgg={this.eggLife(this.state.powerEgg)}  />
            
           </div>
         </div>
