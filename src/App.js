@@ -4,6 +4,10 @@ import './App.css';
 import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
+import NameModal from './Modal';
+import { Route, Switch } from 'react-router-dom';
+import Intro from "./intro";
+import { NavLink } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
 
@@ -11,6 +15,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+
+      // eggs state
       nameEgg: "",
       imageEgg: "",
       caliberEgg: "",
@@ -19,20 +25,58 @@ class App extends Component {
       powerEgg: "",
       victoryEgg: null,
       lifeEgg: "",
+
+      // monster state
       nameMonster: "",
       imageMonster: "",
       skillsMonster: "",
       originMonster: "",
       speciesMonster: "",
       lifeMonster: "",
+
+      // popup state
+      visibleModal: false,
+      userName: "",
+      welcomeMessage: "",
+
+      // battle state
       isWinner: null
     }
-    this.victory=this.victory.bind(this);
+    this.victory = this.victory.bind(this);
   }
 
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
+    this.openModal();
+  }
+
+
+  // popup open
+  openModal() {
+    this.setState({
+      visibleModal: true
+    });
+  }
+  // popup close
+  closeModal() {
+    this.setState({
+      visibleModal: false
+    });
+  }
+
+  takeUserName = () => {
+    this.closeModal()
+    console.log(`Welcome ${this.state.userName}`)
+  }
+
+  onChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      welcomeMessage: `Welcome ${this.state.userName}`,
+      userName: `${event.target.value}`,
+      [name]: value
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -61,6 +105,9 @@ class App extends Component {
     }
   }
 
+
+
+  // api calls
   apiEggs() {
     // Récupération de l'employé via fetch
     fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
@@ -77,7 +124,6 @@ class App extends Component {
         });
       });
   }
-
 
   apiMonster() {
     // Récupération de l'employé via fetch
@@ -100,10 +146,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NameModal
+          visible={this.state.visibleModal}
+          submitName={this.takeUserName}
+          userName={this.state.userName}
+          onChange={this.onChange}
+        />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
+        <h2> {this.state.welcomeMessage}</h2>
         <div className="row justify-content-center my-5">
+
+
           <div className="col-3">
             <Eggs
               nameEgg={this.state.nameEgg}
@@ -133,8 +188,19 @@ class App extends Component {
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
               lifeMonster={this.state.lifeMonster}
-
             />
+
+
+            <Switch>
+              <Route exact path="/generique" component={Intro} />}
+            </Switch>
+
+            <NavLink to={`/generique`} >
+
+              <button>Générique</button>
+
+            </NavLink>
+
           </div>
 
         </div>
