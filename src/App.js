@@ -40,7 +40,11 @@ class App extends Component {
       welcomeMessage: "",
 
       // battle state
-      isWinner: null
+      isWinner: null,
+
+      // console
+      chat: ['tutu']
+
     }
     this.victory = this.victory.bind(this);
   }
@@ -66,17 +70,19 @@ class App extends Component {
   }
 
   takeUserName = () => {
+
     this.closeModal()
     console.log(`Welcome ${this.state.userName}`)
   }
 
-  onChange = (event) => {
+  onChangeModal = (event) => {
     const { name, value } = event.target;
     this.setState({
-      welcomeMessage: `Welcome ${this.state.userName}`,
       userName: `${event.target.value}`,
+      welcomeMessage: `Welcome ${event.target.value}`,
       [name]: value
-    });
+    }, () => console.log(`test ${this.state.userName}`));
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -98,10 +104,26 @@ class App extends Component {
 
   victory(egg, monster) {
     if (egg >= monster) {
+<<<<<<< HEAD
       this.setState({ isWinner: true })
+=======
+      this.setState(prevState => {
+        return {
+          isWinner: true,
+          chat: prevState.chat.concat(["loose"])
+        }
+
+      }, () => console.log(`test ${this.state.userName}`))
+>>>>>>> c35f39bb76820d1d3348f41c9ed182d6a76875fa
 
     } else {
-      this.setState({ isWinner: false })
+      this.setState(prevState => {
+        return {
+          isWinner: false,
+          chat: prevState.chat.concat(["winner"])
+        }
+
+      }, () => console.log(`test ${this.state.userName}`))
     }
   }
 
@@ -152,8 +174,10 @@ class App extends Component {
           visible={this.state.visibleModal}
           submitName={this.takeUserName}
           userName={this.state.userName}
-          onChange={this.onChange}
+          onChange={this.onChangeModal}
         />
+
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
@@ -175,8 +199,6 @@ class App extends Component {
           </div>
           <div className="col-3">
             <Actions
-              healing={this.healing}
-              disabled={this.state.disabled}
               lifeEgg={this.state.lifeEgg}
               lifeMonster={this.state.lifeMonster}
               victory={this.victory}
