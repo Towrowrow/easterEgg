@@ -14,7 +14,7 @@ class Eggs extends Component {
       rarity: "",
       power: "",
       victory: null,
-
+      life: this.props.life
     }
 
   }
@@ -57,19 +57,19 @@ class Eggs extends Component {
                 <span className="badge badge-danger">♥ {this.props.life}</span>
               </p>
               <p className="card-text">
-                <span className="badge badge-danger">caliber : {this.state.caliber}</span>
+                <span className="badge badge-primary">caliber : {this.state.caliber}</span>
               </p>
               <p className="card-text">
-                <span className="badge badge-danger">Farming : {this.state.farming}</span>
+                <span className="badge badge-primary">Farming : {this.state.farming}</span>
               </p>
               <p className="card-text">
-                <span className="badge badge-danger">Rarity : {this.state.rarity}</span>
+                <span className="badge badge-primary">Rarity : {this.state.rarity}</span>
               </p>
-
-
               <p>
                 <span className="badge badge-warning">{this.state.power}</span>
               </p>
+
+
             </div>
           </div>
         }
