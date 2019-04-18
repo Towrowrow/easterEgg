@@ -10,6 +10,9 @@ import Intro from "./intro";
 import { NavLink } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
+import DragNDrop from './dragNdropComp/DragNDrop';
+import Droppable from './dragNdropComp/Droppable';
+import Draggable from './dragNdropComp/Draggable';
 
 class App extends Component {
   constructor(props) {
@@ -173,7 +176,21 @@ class App extends Component {
 
 
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <div className="d-flex align-items-center">
+            <img src={logo} className="App-logo" alt="logo" />
+            <div className="d-flex">
+              <Droppable id="dr1">
+              </Droppable>
+              <p>Omelette wars&lsaquo;/h1&rsaquo;</p>
+            </div>
+            <img src={logo} className="App-logo" alt="logo" />
+            <Droppable id="dr2">
+              <Draggable id="item1">
+                <div>&lsaquo;h1&rsaquo;</div>
+              </Draggable>
+            </Droppable>
+          </div>
+
         </header>
         <h2> {this.state.welcomeMessage}</h2>
         <div className="row justify-content-center my-5">
