@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Perso from './perso';
+import Eggs from './Eggs';
 import Rooms from './rooms';
 import Actions from './actions';
 
@@ -50,7 +50,7 @@ class App extends Component {
         </header>
         <div className="row justify-content-center my-5">
           <div className="col-3">
-            <Perso
+            <Eggs
               life={this.state.persoLife}
               gold={this.state.persoGold}
               disabled={this.state.disabled}
