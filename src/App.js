@@ -10,35 +10,36 @@ class App extends Component {
     super(props)
     this.state = {
       eggsLife: 10,
-      disabled: false
+      disabled: false,
+      nameMonster: "",
+      imageMonster: "",
+      skillsMonster: "",
+      originMonster: "",
+      speciesMonster: "",
     }
   }
 
-  canIDrink = () => {
-    if (this.state.persoGold - 2 < 2) {
-      return this.setState({
-        disabled: true
-      })
-    } else {
-      return this.setState({
-        disabled: false
-      })
-    }
+  componentDidMount() {
+    this.apiMonster();
+
   }
 
-  drinkPotion = () => {
-    return (
-      this.setState({
-        persoLife: this.state.persoLife + 3,
-        persoGold: this.state.persoGold - 2,
-      })
-    );
-  }
+  apiMonster() {
+    // Récupération de l'employé via fetch
+    fetch("http://easteregg.wildcodeschool.fr/api/characters/random")
+      .then(response => response.json())
+      .then(data => {
+        // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
+        console.log(data);
+        this.setState({
+          nameMonster: data.name,
+          imageMonster: data.image,
+          skillsMonster: data.skills,
+          originMonster: data.origin,
+          speciesMonster: data.species,
 
-  healing = () => {
-    this.drinkPotion();
-    this.canIDrink();
-    return;
+        });
+      });
   }
 
   render() {
@@ -61,7 +62,13 @@ class App extends Component {
             />
           </div>
           <div className="col-3">
-            <Monsters name='monster' />
+            <Monsters
+              nameMonster={this.state.nameMonster}
+              imageMonster={this.state.imageMonster}
+              skillsMonster={this.state.skillsMonster}
+              originMonster={this.state.originMonster}
+              speciesMonster={this.state.speciesMonster}
+            />
           </div>
         </div>
 
