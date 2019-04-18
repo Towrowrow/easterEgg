@@ -10,6 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+
+      // eggs state
       nameEgg: "",
       imageEgg: "",
       caliberEgg: "",
@@ -18,13 +20,17 @@ class App extends Component {
       powerEgg: "",
       victoryEgg: null,
       lifeEgg: 10,
+
+      // monster state
       nameMonster: "",
       imageMonster: "",
       skillsMonster: "",
       originMonster: "",
       speciesMonster: "",
 
-      visibleModal: false
+      // popup state
+      visibleModal: false,
+      welcomeMessage: ''
     }
   }
 
@@ -34,20 +40,22 @@ class App extends Component {
     this.openModal();
   }
 
+
+  // popup open
   openModal() {
     this.setState({
-      visible: true
+      visibleModal: true
     });
   }
-
+  // popup close
   closeModal() {
     this.setState({
-      visible: false
+      visibleModal: false
     });
   }
 
 
-
+  // api calls
   apiEggs() {
     // Récupération de l'employé via fetch
     fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
@@ -64,7 +72,6 @@ class App extends Component {
         });
       });
   }
-
 
   apiMonster() {
     // Récupération de l'employé via fetch
