@@ -30,7 +30,9 @@ class App extends Component {
 
       // popup state
       visibleModal: false,
-      welcomeMessage: ''
+      userName: "",
+      welcomeMessage: "",
+
     }
   }
 
@@ -53,6 +55,22 @@ class App extends Component {
       visibleModal: false
     });
   }
+
+  takeUserName = () => {
+    this.closeModal()
+    console.log(`Welcome ${this.state.userName}`)
+  }
+
+  onChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      welcomeMessage: `Welcome ${this.state.userName}`,
+      userName: `${event.target.value}`,
+      [name]: value
+    });
+
+  }
+
 
 
   // api calls
@@ -96,7 +114,9 @@ class App extends Component {
       <div className="App">
         <NameModal
           visible={this.state.visibleModal}
-          submitName={() => this.closeModal()}
+          submitName={this.takeUserName}
+          userName={this.state.userName}
+          onChange={this.onChange}
         />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

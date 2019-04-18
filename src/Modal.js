@@ -14,7 +14,7 @@ class NameModal extends Component {
         height="300"
         effect="fadeInUp"
         onClickAway={() => this.props.closeModal}>
-        <div>
+        <form>
           <h1>Tell me your beautiful name: </h1>
           <div className="input-group mb-3">
             <input
@@ -22,13 +22,19 @@ class NameModal extends Component {
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
+              value={this.props.userName}
+              onChange={this.props.onChange}
+              name="userName"
             />
           </div>
           <button
             type="button"
             className="btn btn-outline-secondary"
-            onClick={() => this.props.submitName()}> Ok </button>
-        </div>
+            onClick={() => this.props.submitName()}
+          >
+            Ok
+          </button>
+        </form>
       </Modal >
 
 
