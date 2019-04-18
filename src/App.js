@@ -9,36 +9,37 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      eggsLife: 10,
-      disabled: false
+      nameEgg: "",
+      imageEgg: "",
+      caliberEgg: "",
+      farmingEgg: "",
+      rarityEgg: "",
+      powerEgg: "",
+      victoryEgg: null,
+      lifeEgg: 10,
     }
   }
 
-  canIDrink = () => {
-    if (this.state.persoGold - 2 < 2) {
-      return this.setState({
-        disabled: true
-      })
-    } else {
-      return this.setState({
-        disabled: false
-      })
-    }
-  }
+  componentDidMount() {
+    this.apiEggs();
 
-  drinkPotion = () => {
-    return (
-      this.setState({
-        persoLife: this.state.persoLife + 3,
-        persoGold: this.state.persoGold - 2,
-      })
-    );
   }
+  apiEggs() {
+    // Récupération de l'employé via fetch
+    fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
+      .then(response => response.json())
+      .then(data => {
+        // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
+        this.setState({
+          nameEgg: data.name,
+          imageEgg: data.image,
+          caliberEgg: data.caliber,
+          farmingEgg: data.farming,
+          rarityEgg: data.rarity,
+          powerEgg: data.power,
 
-  healing = () => {
-    this.drinkPotion();
-    this.canIDrink();
-    return;
+        });
+      });
   }
 
   render() {
@@ -50,8 +51,14 @@ class App extends Component {
         <div className="row justify-content-center my-5">
           <div className="col-3">
             <Eggs
-              life={this.state.eggsLife}
-              disabled={this.state.disabled}
+              nameEgg={this.state.nameEgg}
+              imageEgg={this.state.imageEgg}
+              caliberEgg={this.state.caliberEgg}
+              farmingEgg={this.state.farmingEgg}
+              rarityEgg={this.state.rarityEgg}
+              powerEgg={this.state.powerEgg}
+              victoryEgg={this.state.victoryEgg}
+              lifeEgg={this.state.lifeEgg}
             />
           </div>
           <div className="col-3">
