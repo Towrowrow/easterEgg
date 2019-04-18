@@ -129,7 +129,10 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
+        <h2> {this.state.welcomeMessage}</h2>
         <div className="row justify-content-center my-5">
+
+
           <div className="col-3">
             <Eggs
               nameEgg={this.state.nameEgg}
