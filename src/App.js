@@ -4,7 +4,8 @@ import './App.css';
 import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
-import characterLife from './functions/characterLife';
+import lifeEgg from './functions/lifeEgg';
+import lifeCharacter from './functions/lifeCharacter';
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends Component {
       skillsMonster: "",
       originMonster: "",
       speciesMonster: "",
+      lifeMonster: "",
     }
   }
 
@@ -30,30 +32,14 @@ class App extends Component {
     this.apiEggs();
     this.apiMonster();
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.powerEgg !== this.state.powerEgg) {
-      this.setState({ lifeEgg: characterLife(this.state.powerEgg) })
+      this.setState({ lifeEgg: lifeEgg(this.state.powerEgg) })
     }
-  }
-
-
- eggLife (skills) {
-    let totPoint = 0;
-    skills.map(skill => {
-      return totPoint += Number(skill.charAt(skill.length - 1));
-    });
-    return totPoint;
-  }
-
-characterLife (power) {
-    let totPoint = Number(power.charAt(power.length - 1));
-    return totPoint;
-  }
-  
-  
-
-  updateLife() {
-    console.log(this.state.powerEgg);
+    if (prevState.skillsMonster !== this.state.skillsMonster) {
+      this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster)})
+    }
   }
 
   apiEggs() {
@@ -87,7 +73,7 @@ characterLife (power) {
           skillsMonster: data.skills,
           originMonster: data.origin,
           speciesMonster: data.species,
-
+          
         });
       });
   }
@@ -124,15 +110,10 @@ characterLife (power) {
               skillsMonster={this.state.skillsMonster}
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
+              lifeMonster={this.state.lifeMonster}
             />
-<<<<<<< HEAD
-            <Eggs lifeEgg={this.eggLife(this.state.powerEgg)}  />
-           
-=======
-
->>>>>>> 68a2bcbaac1f7622d49d0a6379b399f46829a02a
           </div>
-          <p>{this.state.powerEgg}</p>
+          
         </div>
 
       </div >

@@ -19,7 +19,7 @@ class Monster extends Component {
             <div className="card-body">
               <h5 className="card-title">{this.props.nameMonster}</h5>
               <p className="card-text">
-                <span className="badge badge-danger">♥ {this.props.life}</span>
+                <span className="badge badge-danger">♥ {this.props.lifeMonster}</span>
               </p>
               <p className="card-text">
                 <span className="badge badge-danger">Origin :  {this.props.originMonster}</span>

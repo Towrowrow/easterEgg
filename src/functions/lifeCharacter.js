@@ -1,4 +1,4 @@
-const eggLife = (skills) => {
+const characterLife = (skills) => {
   let totPoint = 0;
   skills.map(skill => {
     return totPoint += Number(skill.charAt(skill.length - 1));
@@ -6,4 +6,4 @@ const eggLife = (skills) => {
   return totPoint;
 }
 
-export default eggLife;
+export default characterLife;
