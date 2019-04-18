@@ -5,6 +5,8 @@ import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
 import NameModal from './Modal';
+import lifeEgg from './functions/lifeEgg';
+import lifeCharacter from './functions/lifeCharacter';
 
 class App extends Component {
   constructor(props) {
@@ -19,20 +21,18 @@ class App extends Component {
       rarityEgg: "",
       powerEgg: "",
       victoryEgg: null,
-      lifeEgg: 10,
-
-      // monster state
+      lifeEgg: "",
       nameMonster: "",
       imageMonster: "",
       skillsMonster: "",
       originMonster: "",
       speciesMonster: "",
+      lifeMonster: "",
 
       // popup state
       visibleModal: false,
       userName: "",
       welcomeMessage: "",
-
     }
   }
 
@@ -68,7 +68,15 @@ class App extends Component {
       userName: `${event.target.value}`,
       [name]: value
     });
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.powerEgg !== this.state.powerEgg) {
+      this.setState({ lifeEgg: lifeEgg(this.state.powerEgg) })
+    }
+    if (prevState.skillsMonster !== this.state.skillsMonster) {
+      this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster) })
+    }
   }
 
 
@@ -97,7 +105,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
-        console.log(data);
+
         this.setState({
           nameMonster: data.name,
           imageMonster: data.image,
@@ -147,8 +155,10 @@ class App extends Component {
               skillsMonster={this.state.skillsMonster}
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
+              lifeMonster={this.state.lifeMonster}
             />
           </div>
+
         </div>
 
       </div >
