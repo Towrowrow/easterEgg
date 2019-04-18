@@ -17,7 +17,7 @@ class App extends Component {
       rarityEgg: "",
       powerEgg: "",
       victoryEgg: null,
-      lifeEgg: 10,
+      lifeEgg: "",
       nameMonster: "",
       imageMonster: "",
       skillsMonster: "",
@@ -29,8 +29,13 @@ class App extends Component {
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
-    this.updateLife();
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.powerEgg !== this.state.powerEgg) {
+      this.setState({ lifeEgg: characterLife(this.state.powerEgg) })
+    }
+  }
+
 
  eggLife (skills) {
     let totPoint = 0;
@@ -49,8 +54,6 @@ characterLife (power) {
 
   updateLife() {
     console.log(this.state.powerEgg);
-    const newLife = characterLife(this.state.powerEgg);
-    this.setState({lifeEgg: newLife});
   }
 
   apiEggs() {
@@ -77,7 +80,7 @@ characterLife (power) {
       .then(response => response.json())
       .then(data => {
         // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
-    
+
         this.setState({
           nameMonster: data.name,
           imageMonster: data.image,
@@ -122,9 +125,14 @@ characterLife (power) {
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
             />
+<<<<<<< HEAD
             <Eggs lifeEgg={this.eggLife(this.state.powerEgg)}  />
            
+=======
+
+>>>>>>> 68a2bcbaac1f7622d49d0a6379b399f46829a02a
           </div>
+          <p>{this.state.powerEgg}</p>
         </div>
 
       </div >
