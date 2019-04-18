@@ -104,9 +104,6 @@ class App extends Component {
 
   victory(egg, monster) {
     if (egg >= monster) {
-<<<<<<< HEAD
-      this.setState({ isWinner: true })
-=======
       this.setState(prevState => {
         return {
           isWinner: true,
@@ -114,7 +111,6 @@ class App extends Component {
         }
 
       }, () => console.log(`test ${this.state.userName}`))
->>>>>>> c35f39bb76820d1d3348f41c9ed182d6a76875fa
 
     } else {
       this.setState(prevState => {
@@ -169,7 +165,7 @@ class App extends Component {
     return (
 
       <div className="App">
-     
+
         <NameModal
           visible={this.state.visibleModal}
           submitName={this.takeUserName}
