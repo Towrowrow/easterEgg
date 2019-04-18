@@ -43,7 +43,7 @@ class App extends Component {
       isWinner: null,
 
       // console
-      chat: ['tutu']
+      chat: []
 
     }
     this.victory = this.victory.bind(this);
@@ -107,19 +107,19 @@ class App extends Component {
       this.setState(prevState => {
         return {
           isWinner: true,
-          chat: prevState.chat.concat(["loose"])
+          chat: ["Victory !", ` ${this.state.nameMonster} is EGGsterminated !`].concat(prevState.chat)
         }
 
-      }, () => console.log(`test ${this.state.userName}`))
+      })
 
     } else {
       this.setState(prevState => {
         return {
           isWinner: false,
-          chat: prevState.chat.concat(["winner"])
+          chat: ["Fatality !", `${this.state.nameEgg} end in omelet !`].concat(prevState.chat)
         }
 
-      }, () => console.log(`test ${this.state.userName}`))
+      })
     }
   }
 
@@ -193,8 +193,11 @@ class App extends Component {
               lifeEgg={this.state.lifeEgg}
             />
           </div>
-          <div className="col-3">
+          <div className="col-5">
             <Actions
+              monsterName={this.state.nameMonster}
+              nameEgg={this.state.nameEgg}
+              healProps={this.state.chat}
               lifeEgg={this.state.lifeEgg}
               lifeMonster={this.state.lifeMonster}
               victory={this.victory}
