@@ -14,32 +14,7 @@ class App extends Component {
     }
   }
 
-  canIDrink = () => {
-    if (this.state.persoGold - 2 < 2) {
-      return this.setState({
-        disabled: true
-      })
-    } else {
-      return this.setState({
-        disabled: false
-      })
-    }
-  }
 
-  drinkPotion = () => {
-    return (
-      this.setState({
-        persoLife: this.state.persoLife + 3,
-        persoGold: this.state.persoGold - 2,
-      })
-    );
-  }
-
-  healing = () => {
-    this.drinkPotion();
-    this.canIDrink();
-    return;
-  }
 
   render() {
     return (
