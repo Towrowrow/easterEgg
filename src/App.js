@@ -25,7 +25,9 @@ class App extends Component {
       originMonster: "",
       speciesMonster: "",
       lifeMonster: "",
+      isWinner: null
     }
+    this.victory=this.victory.bind(this);
   }
 
   componentDidMount() {
@@ -38,7 +40,15 @@ class App extends Component {
       this.setState({ lifeEgg: lifeEgg(this.state.powerEgg) })
     }
     if (prevState.skillsMonster !== this.state.skillsMonster) {
-      this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster)})
+      this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster) })
+    }
+  }
+
+  victory(egg, monster) {
+    if (egg >= monster) {
+      this.setState({ isWinner: true })
+    } else {
+      this.setState({ isWinner: false })
     }
   }
 
@@ -73,7 +83,7 @@ class App extends Component {
           skillsMonster: data.skills,
           originMonster: data.origin,
           speciesMonster: data.species,
-          
+
         });
       });
   }
@@ -101,6 +111,9 @@ class App extends Component {
             <Actions
               healing={this.healing}
               disabled={this.state.disabled}
+              lifeEgg={this.state.lifeEgg}
+              lifeMonster={this.state.lifeMonster}
+              victory={this.victory}
             />
           </div>
           <div className="col-3">
@@ -111,9 +124,10 @@ class App extends Component {
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
               lifeMonster={this.state.lifeMonster}
+
             />
           </div>
-          
+
         </div>
 
       </div >
