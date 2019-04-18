@@ -17,11 +17,17 @@ class App extends Component {
       powerEgg: "",
       victoryEgg: null,
       lifeEgg: 10,
+      nameMonster: "",
+      imageMonster: "",
+      skillsMonster: "",
+      originMonster: "",
+      speciesMonster: "",
     }
   }
 
   componentDidMount() {
     this.apiEggs();
+    this.apiMonster();
 
   }
   apiEggs() {
@@ -37,6 +43,24 @@ class App extends Component {
           farmingEgg: data.farming,
           rarityEgg: data.rarity,
           powerEgg: data.power,
+        });
+      });
+  }
+
+
+  apiMonster() {
+    // Récupération de l'employé via fetch
+    fetch("http://easteregg.wildcodeschool.fr/api/characters/random")
+      .then(response => response.json())
+      .then(data => {
+        // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
+        console.log(data);
+        this.setState({
+          nameMonster: data.name,
+          imageMonster: data.image,
+          skillsMonster: data.skills,
+          originMonster: data.origin,
+          speciesMonster: data.species,
 
         });
       });
@@ -68,7 +92,13 @@ class App extends Component {
             />
           </div>
           <div className="col-3">
-            <Monsters name='monster' />
+            <Monsters
+              nameMonster={this.state.nameMonster}
+              imageMonster={this.state.imageMonster}
+              skillsMonster={this.state.skillsMonster}
+              originMonster={this.state.originMonster}
+              speciesMonster={this.state.speciesMonster}
+            />
           </div>
         </div>
 
