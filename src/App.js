@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Perso from './perso';
-import Rooms from './rooms';
+import Eggs from './Eggs';
+import Monsters from './Monsters';
 import Actions from './actions';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      persoLife: 10,
-      persoGold: 5,
+      eggsLife: 10,
       disabled: false
     }
   }
@@ -50,9 +49,8 @@ class App extends Component {
         </header>
         <div className="row justify-content-center my-5">
           <div className="col-3">
-            <Perso
-              life={this.state.persoLife}
-              gold={this.state.persoGold}
+            <Eggs
+              life={this.state.eggsLife}
               disabled={this.state.disabled}
             />
           </div>
@@ -63,7 +61,7 @@ class App extends Component {
             />
           </div>
           <div className="col-3">
-            <Rooms name='monster' />
+            <Monsters name='monster' />
           </div>
         </div>
 
