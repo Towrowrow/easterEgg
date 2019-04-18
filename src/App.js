@@ -9,8 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      persoLife: 10,
-      persoGold: 5,
+      eggsLife: 10,
       disabled: false
     }
   }
@@ -51,8 +50,7 @@ class App extends Component {
         <div className="row justify-content-center my-5">
           <div className="col-3">
             <Eggs
-              life={this.state.persoLife}
-              gold={this.state.persoGold}
+              life={this.state.eggsLife}
               disabled={this.state.disabled}
             />
           </div>
