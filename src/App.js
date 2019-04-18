@@ -4,6 +4,7 @@ import './App.css';
 import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
+import NameModal from './Modal';
 
 class App extends Component {
   constructor(props) {
@@ -22,14 +23,31 @@ class App extends Component {
       skillsMonster: "",
       originMonster: "",
       speciesMonster: "",
+
+      visibleModal: false
     }
   }
 
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
-
+    this.openModal();
   }
+
+  openModal() {
+    this.setState({
+      visible: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      visible: false
+    });
+  }
+
+
+
   apiEggs() {
     // Récupération de l'employé via fetch
     fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
@@ -69,6 +87,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NameModal
+          visible={this.state.visibleModal}
+          submitName={() => this.closeModal()}
+        />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
