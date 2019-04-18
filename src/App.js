@@ -4,10 +4,11 @@ import './App.css';
 import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
-import characterLife from './functions/characterLife';
 import { Route, Switch } from 'react-router-dom';
 import Intro from "./intro";
 import { NavLink } from 'react-router-dom';
+import lifeEgg from './functions/lifeEgg';
+import lifeCharacter from './functions/lifeCharacter';
 
 class App extends Component {
   constructor(props) {
@@ -26,22 +27,32 @@ class App extends Component {
       skillsMonster: "",
       originMonster: "",
       speciesMonster: "",
+      lifeMonster: "",
+      isWinner: null
     }
+    this.victory = this.victory.bind(this);
   }
 
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.powerEgg !== this.state.powerEgg) {
-      this.setState({ lifeEgg: characterLife(this.state.powerEgg) })
+      this.setState({ lifeEgg: lifeEgg(this.state.powerEgg) })
+    }
+    if (prevState.skillsMonster !== this.state.skillsMonster) {
+      this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster) })
     }
   }
 
-
-  updateLife() {
-    console.log(this.state.powerEgg);
+  victory(egg, monster) {
+    if (egg >= monster) {
+      this.setState({ isWinner: true })
+    } else {
+      this.setState({ isWinner: false })
+    }
   }
 
   apiEggs() {
@@ -103,6 +114,9 @@ class App extends Component {
             <Actions
               healing={this.healing}
               disabled={this.state.disabled}
+              lifeEgg={this.state.lifeEgg}
+              lifeMonster={this.state.lifeMonster}
+              victory={this.victory}
             />
           </div>
           <div className="col-3">
@@ -112,8 +126,8 @@ class App extends Component {
               skillsMonster={this.state.skillsMonster}
               originMonster={this.state.originMonster}
               speciesMonster={this.state.speciesMonster}
+              lifeMonster={this.state.lifeMonster}
             />
-
 
 
             <Switch>
@@ -127,8 +141,10 @@ class App extends Component {
             </NavLink>
 
           </div>
-        </div>
-      </div>
+          />
+          </div>
+
+      </div >
     );
   }
 }

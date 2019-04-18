@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-const Attack = () => (
+const Attack = (props) => (
 
   <div className="card mb-3">
     <div className="row no-gutters">
@@ -13,7 +13,8 @@ const Attack = () => (
       <div className="col-md-8">
         <div className="card-body ">
           <p>
-            <button type="button" className="btn btn-dark btn-block mt-5">Attack !</button>
+            
+            <button onClick={() => props.victory(props.eggs, props.monsters)} type="button" className="btn btn-dark btn-block mt-5">Attack !</button>
           </p>
         </div>
       </div>
