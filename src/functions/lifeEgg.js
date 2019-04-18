@@ -1,5 +1,5 @@
 const eggLife = (power) => {
-  let totPoint = Number(power.charAt(power.length - 1));
+  let totPoint = 2* Number(power.charAt(power.length - 1));
   return totPoint;
 }
 
