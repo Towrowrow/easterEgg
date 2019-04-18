@@ -1,0 +1,9 @@
+.attackMonster {
+  width: 1em;
+}
+
+.monsterImage {
+  margin-top: 20px;
+  object-fit: cover;
+  height: 100%;
+}
