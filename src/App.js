@@ -5,6 +5,9 @@ import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
 import NameModal from './Modal';
+import { Route, Switch } from 'react-router-dom';
+import Intro from "./intro";
+import { NavLink } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
 
@@ -22,6 +25,8 @@ class App extends Component {
       powerEgg: "",
       victoryEgg: null,
       lifeEgg: "",
+
+      // monster state
       nameMonster: "",
       imageMonster: "",
       skillsMonster: "",
@@ -33,7 +38,11 @@ class App extends Component {
       visibleModal: false,
       userName: "",
       welcomeMessage: "",
+
+      // battle state
+      isWinner: null
     }
+    this.victory = this.victory.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +85,14 @@ class App extends Component {
     }
     if (prevState.skillsMonster !== this.state.skillsMonster) {
       this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster) })
+    }
+  }
+
+  victory(egg, monster) {
+    if (egg >= monster) {
+      this.setState({ isWinner: true })
+    } else {
+      this.setState({ isWinner: false })
     }
   }
 
@@ -149,6 +166,9 @@ class App extends Component {
             <Actions
               healing={this.healing}
               disabled={this.state.disabled}
+              lifeEgg={this.state.lifeEgg}
+              lifeMonster={this.state.lifeMonster}
+              victory={this.victory}
             />
           </div>
           <div className="col-3">
@@ -160,6 +180,18 @@ class App extends Component {
               speciesMonster={this.state.speciesMonster}
               lifeMonster={this.state.lifeMonster}
             />
+
+
+            <Switch>
+              <Route exact path="/generique" component={Intro} />}
+            </Switch>
+
+            <NavLink to={`/generique`} >
+
+              <button>Générique</button>
+
+            </NavLink>
+
           </div>
 
         </div>

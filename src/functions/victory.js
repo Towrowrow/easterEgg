@@ -1,6 +1,6 @@
-const victory = (egg, character) => {
+const victory = (egg, monster) => {
   let isWinner;
-  if (egg >= character) {
+  if (egg >= monster) {
     isWinner = true;
   } else {
     isWinner = false;
