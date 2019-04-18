@@ -85,21 +85,21 @@ class App extends Component {
     }
     if (prevState.skillsMonster !== this.state.skillsMonster) {
       this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster) })
-    } 
-    
+    }
+
     if ((prevState.isWinner !== this.state.isWinner) && (this.state.isWinner === true)) {
       this.apiMonster()
-     this.setState({isWinner: null })
-    } else if ((prevState.isWinner !== this.state.isWinner) && (this.state.isWinner === false))  {
-        this.apiEggs()
-        this.setState({isWinner: null })
-      }
+      this.setState({ isWinner: null })
+    } else if ((prevState.isWinner !== this.state.isWinner) && (this.state.isWinner === false)) {
+      this.apiEggs()
+      this.setState({ isWinner: null })
     }
+  }
 
   victory(egg, monster) {
     if (egg >= monster) {
       this.setState({ isWinner: true })
-      
+
     } else {
       this.setState({ isWinner: false })
     }
@@ -145,7 +145,9 @@ class App extends Component {
 
   render() {
     return (
+
       <div className="App">
+     
         <NameModal
           visible={this.state.visibleModal}
           submitName={this.takeUserName}
@@ -204,8 +206,8 @@ class App extends Component {
           </div>
 
         </div>
-
       </div >
+
     );
   }
 }
