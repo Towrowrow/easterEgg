@@ -18,19 +18,27 @@ class Intro extends Component {
 
           <div className="crawl">
             <div className="title">
-              <p>Episode I</p>
-              <h1>La jeunesse de Tete d'Oeuf</h1>
+              <p>OMELET WARS</p>
+              <h1>A NEW HOPE</h1>
             </div>
 
-            <p>Dans une galaxie lointaine, trés lointaine, une équipe d'Oeufs de l'espace commence son voyage.
-  Aprés moult aventures spatiales, les Oeufs arrivent sur Terre, et c'est pas pour tailler le bout de gras.
-          </p>
-
-            <p>Prennez place dans un Jeu révolutionnaire et combattez pour sauver votre civilisation.
-              Tuez quicquonce se mettras en travers de votre chemin.
-          </p>
-
-            <p>Vous êtes notre dernier espoir, Capitaine Tête d'oeuf, menez vos troupes à la victoire !….</p>
+            <br />
+            <p>CREDITS : </p>
+            <div className="SSW">
+              <br />
+              <p>Developped by: L'ADR STUDIO</p>
+              <p>Game design: Mark Hamill </p>
+              <p>Music: ASMR Production</p>
+              <p>Actors: L'ADR STUDIO</p>
+              <p>Scenarist: Tolkien </p>
+              <br />
+              <p>SPECIAL THANKS:</p>
+              <p> Skippy Production </p>
+              <p>RedBull</p>
+              <p>Cafeine </p>
+              <p>WILD CODE SCHOOL</p>
+              <p>That's all folks !</p>
+            </div>
           </div>
         </section>
       </div >

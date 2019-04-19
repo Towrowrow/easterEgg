@@ -2,7 +2,9 @@
   font-family: "gameboy";
   src: url(./images/early_gameboy/Early\ GameBoy.ttf) format("truetype");
 }
-
+.star-wars {
+  font-family: "gameboy" !important ;
+}
 .ChatBox {
   font-family: "gameboy" !important ;
   background-color: black !important;
@@ -13,6 +15,10 @@
   font-size: 0.5rem;
   height: 25rem;
   margin-top: -15px !important;
+}
+.SSW{
+  font-size: 40px;
+  text-align: center;
 }
 .cardAttack{
   margin-top: 2rem !important;
