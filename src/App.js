@@ -14,7 +14,7 @@ import gourou from './images/benoit_superboss.png';
 import Droppable from './dragNdropComp/Droppable';
 import Draggable from './dragNdropComp/Draggable';
 import { prototype } from 'module';
-
+import Pub from './Pub';
 
 
 class App extends Component {
@@ -302,11 +302,10 @@ class App extends Component {
 
               }
             </Switch>
-
-
           </div>
 
         </div>
+        <Pub />
       </div >
 
     );
