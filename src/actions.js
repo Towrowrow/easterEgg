@@ -15,7 +15,10 @@ const Actions = (props) => (
           disabled={props.disabled}
           heal={props.chat}
         />
-        <Attack eggs={props.lifeEgg} monsters={props.lifeMonster} victory={props.victory} />
+        <Attack
+          eggs={props.lifeEgg}
+          monsters={props.lifeMonster}
+          victory={props.victory} />
       </div>
     </div>
   </div>
