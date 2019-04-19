@@ -15,7 +15,7 @@ class Monster extends Component {
       <div>
         {this.props.nameMonster &&
           <div className="card bg-light">
-            <img src={this.props.imageMonster} className="card-img-top monsterimageMonster" alt={this.props.nameMonster} />
+            <img src={this.props.imageMonster} className="card-img-top monsterImage" alt={this.props.nameMonster} />
             <div className="card-body">
               <h5 className="card-title">{this.props.nameMonster}</h5>
               <p className="card-text">
