@@ -9,7 +9,7 @@ class Heal extends Component {
   render() {
     return (
 
-      <div className="ChatBox card mb-1"
+      <div className="cardShadow ChatBox card mb-1"
         style={{ overflowY: "scroll" }}
       >
         <div className="row no-gutters">

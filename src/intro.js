@@ -11,7 +11,7 @@ class Intro extends Component {
       <div className="intro">
         <NavLink to="/">
           <div className="ButtonSW">
-            <button className="BoutonSW">JOUER</button>
+            <button className="BoutonSW">PLAY</button>
           </div>
         </NavLink>
         <section className="star-wars">

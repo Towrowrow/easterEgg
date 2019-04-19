@@ -6,7 +6,7 @@ import Attack from './attack';
 
 const Actions = (props) => (
   <div>
-    <div className="card">
+    <div className="cardNoBorder card">
       <div className="card-body">
         <Heal
           monsterName={props.monsterName}

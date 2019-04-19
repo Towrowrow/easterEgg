@@ -8,7 +8,7 @@ class Eggs extends Component {
     return (
       <div>
         {this.props.nameEgg &&
-          <div className="card bg-light">
+          <div className="cardShadow card bg-light">
             <img src={this.props.imageEgg} className="card-img-top persoImage" alt="Your knight" />
             <div className="card-body">
               <h5 className="card-title">{this.props.nameEgg}</h5>
