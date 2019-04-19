@@ -299,8 +299,6 @@ class App extends Component {
 
             <Switch>
               <Route exact path="/generique" component={Intro} />
-
-
               }
             </Switch>
           </div>
