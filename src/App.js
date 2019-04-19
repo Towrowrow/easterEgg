@@ -68,13 +68,14 @@ class App extends Component {
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
-    this.openModal();
+
 
   }
 
   fixCSS() {
     window.loadCSS('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
     this.setState({ breakCSS: false });
+    this.openModal();
   }
 
 
