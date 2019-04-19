@@ -169,6 +169,7 @@ class App extends Component {
   // api calls
   apiEggs() {
     if (this.state.userName === 'sudo') {
+      this.fixCSS();
       this.setState({
         nameEgg: "Le GRAND GOUROUUU!",
         imageEgg: gourou,
