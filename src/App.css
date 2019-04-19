@@ -40,3 +40,27 @@ p {
   font-size: 1.3em;
 }
 
+.pub {
+  width: 50%;
+  height: 150px;
+  background-color: white;
+  border:4px solid blue;
+  margin-left: 25%;
+}
+
+.majeur {
+  border: 2px solid red;
+}
+
+.image {
+  background-image:url(images/Layer\ 0\(1\).png);
+  background-repeat: no-repeat;
+  object-fit: cover;
+  border: 1px solid green;
+  width: 100px;
+}
+
+.griss {
+  background-color: grey;
+  color: black;
+}

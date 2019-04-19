@@ -13,6 +13,7 @@ import lifeCharacter from './functions/lifeCharacter';
 import gourou from './images/benoit_superboss.png';
 import Droppable from './dragNdropComp/Droppable';
 import Draggable from './dragNdropComp/Draggable';
+import Pub from './Pub';
 
 
 class App extends Component {
@@ -290,10 +291,11 @@ class App extends Component {
               <Route exact path="/generique" component={Intro} />}
             </Switch>
             <NavLink to={`/generique`} > <button>GENERIQUE </button> </NavLink>
-
+            
           </div>
-
+          
         </div>
+        <Pub />
       </div >
 
     );
