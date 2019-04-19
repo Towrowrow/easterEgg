@@ -9,10 +9,13 @@ const Actions = (props) => (
     <div className="card">
       <div className="card-body">
         <Heal
-          healing={props.healing}
+          monsterName={props.monsterName}
+          nameEgg={props.nameEgg}
+          healProps={props.healProps}
           disabled={props.disabled}
+          heal={props.chat}
         />
-        <Attack eggs={props.lifeEgg} monsters={props.lifeMonster} victory={props.victory}/>
+        <Attack eggs={props.lifeEgg} monsters={props.lifeMonster} victory={props.victory} />
       </div>
     </div>
   </div>

@@ -5,11 +5,12 @@
 
 .ChatBox {
   font-family: "gameboy" !important ;
-  background-color: black;
+  background-color: black !important;
   color :lightgrey;
   text-align: center;
   align-items: center;
   font-size: 0.5rem;
+  height: 25rem;;
 }
 
 
@@ -27,6 +28,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 
 .intro{
   position: fixed;

@@ -10,6 +10,10 @@ import Intro from "./intro";
 import { NavLink } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
+import gourou from './images/benoit_superboss.png';
+import Droppable from './dragNdropComp/Droppable';
+import Draggable from './dragNdropComp/Draggable';
+
 
 class App extends Component {
   constructor(props) {
@@ -40,15 +44,34 @@ class App extends Component {
       welcomeMessage: "",
 
       // battle state
-      isWinner: null
+      isWinner: null,
+
+      // console
+      chat: [],
+
+      //benoit
+      isGourou: false,
+
+      //CSS Break
+      breakCSS: true,
+
+      // Winable
+      counterWin: 0
+
     }
     this.victory = this.victory.bind(this);
+    this.fixCSS = this.fixCSS.bind(this);
   }
 
   componentDidMount() {
     this.apiEggs();
     this.apiMonster();
     this.openModal();
+  }
+
+  fixCSS() {
+    window.loadCSS('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+    this.setState({ breakCSS: false });
   }
 
 
@@ -66,42 +89,71 @@ class App extends Component {
   }
 
   takeUserName = () => {
+
     this.closeModal()
+    this.apiEggs()
     console.log(`Welcome ${this.state.userName}`)
   }
 
-  onChange = (event) => {
+  onChangeModal = (event) => {
     const { name, value } = event.target;
     this.setState({
-      welcomeMessage: `Welcome ${this.state.userName}`,
       userName: `${event.target.value}`,
+      welcomeMessage: `Welcome ${event.target.value}`,
       [name]: value
-    });
+    }, () => console.log(`test ${this.state.userName}`));
+
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.powerEgg !== this.state.powerEgg) {
-      this.setState({ lifeEgg: lifeEgg(this.state.powerEgg) })
+      this.setState({ lifeEgg: lifeEgg(this.state.powerEgg, this.state.isGourou) })
     }
     if (prevState.skillsMonster !== this.state.skillsMonster) {
       this.setState({ lifeMonster: lifeCharacter(this.state.skillsMonster) })
-    } 
-    
-    if ((prevState.isWinner !== this.state.isWinner) && (this.state.isWinner === true)) {
-      this.apiMonster()
-     this.setState({isWinner: null })
-    } else if ((prevState.isWinner !== this.state.isWinner) && (this.state.isWinner === false))  {
-        this.apiEggs()
-        this.setState({isWinner: null })
-      }
     }
 
+    if ((prevState.isWinner !== this.state.isWinner) && (this.state.isWinner === true)) {
+      this.apiMonster()
+      this.setState({ isWinner: null })
+    } else if ((prevState.isWinner !== this.state.isWinner) && (this.state.isWinner === false)) {
+      this.apiEggs()
+      this.setState({ isWinner: null })
+    }
+  }
+
   victory(egg, monster) {
-    if (egg >= monster) {
-      this.setState({ isWinner: true })
-      
+    if (this.state.userName === 'benoit') {
+      this.setState(prevState => {
+        return {
+          isWinner: true,
+          counterWin: prevState.counterWin + 1,
+          chat: ["Victory !", `  SKIPPY WIN AGAIN !!`].concat(prevState.chat)
+
+        }
+
+      })
+
     } else {
-      this.setState({ isWinner: false })
+      if (egg >= monster) {
+        this.setState(prevState => {
+          return {
+            isWinner: true,
+            counterWin: prevState.counterWin + 1,
+            chat: ["Victory !", ` ${this.state.nameMonster} is EGGsterminated !`].concat(prevState.chat)
+          }
+
+        })
+
+      } else {
+        this.setState(prevState => {
+          return {
+            isWinner: false,
+            chat: ["Fatality !", `${this.state.nameEgg} end in omelet !`].concat(prevState.chat)
+          }
+
+        })
+      }
     }
   }
 
@@ -109,20 +161,33 @@ class App extends Component {
 
   // api calls
   apiEggs() {
-    // Récupération de l'employé via fetch
-    fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
-      .then(response => response.json())
-      .then(data => {
-        // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
-        this.setState({
-          nameEgg: data.name,
-          imageEgg: data.image,
-          caliberEgg: data.caliber,
-          farmingEgg: data.farming,
-          rarityEgg: data.rarity,
-          powerEgg: data.power,
-        });
+    if (this.state.userName === 'benoit') {
+      this.setState({
+        nameEgg: "Le GRAND GOUROUUU!",
+        imageEgg: gourou,
+        caliberEgg: "Christ cosmique",
+        farmingEgg: "from Bugarache",
+        rarityEgg: "Unique",
+        powerEgg: "Power: murmure à l'oreille des devices",
+        isGourou: true,
       });
+    } else {
+      fetch("http://easteregg.wildcodeschool.fr/api/eggs/random")
+        .then(response => response.json())
+        .then(data => {
+          // Une fois les données récupérées, on va mettre à jour notre state avec les nouvelles données
+          this.setState({
+            nameEgg: data.name,
+            imageEgg: data.image,
+            caliberEgg: data.caliber,
+            farmingEgg: data.farming,
+            rarityEgg: data.rarity,
+            powerEgg: data.power,
+          });
+        });
+    }
+    // Récupération de l'employé via fetch
+
   }
 
   apiMonster() {
@@ -143,19 +208,48 @@ class App extends Component {
       });
   }
 
+  sayMyName = () => {
+    if (this.state.isGourou) {
+      return "Ode au grand Gourou !"
+    } else {
+      return this.state.welcomeMessage;
+    }
+  }
+
+
+
+
   render() {
     return (
+
       <div className="App">
+
         <NameModal
           visible={this.state.visibleModal}
           submitName={this.takeUserName}
           userName={this.state.userName}
-          onChange={this.onChange}
+          onChange={this.onChangeModal}
         />
+
+
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <span className="d-flex align-items-center">
+            <img src={logo} className="App-logo" alt="logo" />
+            <span className="d-flex">
+              <Droppable id="dr1" fixCSS={this.fixCSS}>
+              </Droppable>
+              <span>Omelet Wars{this.state.breakCSS && <span>&lsaquo;/h1&rsaquo;</span>}</span>
+            </span>
+            <img src={logo} className="App-logo" alt="logo" />
+            <Droppable id="dr2">
+              <Draggable id="item1">
+                {this.state.breakCSS && <div>&lsaquo;h1&rsaquo;</div>}
+              </Draggable>
+            </Droppable>
+          </span>
+
         </header>
-        <h2> {this.state.welcomeMessage}</h2>
+        <h2> {this.sayMyName()}</h2>
         <div className="row justify-content-center my-5">
 
 
@@ -171,10 +265,11 @@ class App extends Component {
               lifeEgg={this.state.lifeEgg}
             />
           </div>
-          <div className="col-3">
+          <div className="col-5">
             <Actions
-              healing={this.healing}
-              disabled={this.state.disabled}
+              monsterName={this.state.nameMonster}
+              nameEgg={this.state.nameEgg}
+              healProps={this.state.chat}
               lifeEgg={this.state.lifeEgg}
               lifeMonster={this.state.lifeMonster}
               victory={this.victory}
@@ -194,18 +289,13 @@ class App extends Component {
             <Switch>
               <Route exact path="/generique" component={Intro} />}
             </Switch>
-
-            <NavLink to={`/generique`} >
-
-              <button>Générique</button>
-
-            </NavLink>
+            <NavLink to={`/generique`} > <button>GENERIQUE </button> </NavLink>
 
           </div>
 
         </div>
-
       </div >
+
     );
   }
 }
