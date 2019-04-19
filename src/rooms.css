@@ -7,3 +7,7 @@
   object-fit: contain;
   height: 300px;
 }
+
+.cardAttack {
+  height: 180px;
+}
