@@ -12,9 +12,9 @@ class Monster extends Component {
 
   render() {
     return (
-      <div>
+      <div >
         {this.props.nameMonster &&
-          <div className="card bg-light">
+          <div className="cardShadow card bg-light">
             <img src={this.props.imageMonster} className="card-img-top monsterImage" alt={this.props.nameMonster} />
             <div className="card-body">
               <h5 className="card-title">{this.props.nameMonster}</h5>

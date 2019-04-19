@@ -4,6 +4,6 @@
 
 .monsterImage {
   margin-top: 20px;
-  object-fit: cover;
-  height: 500px;
+  object-fit: contain;
+  height: 300px;
 }

@@ -5,14 +5,16 @@ import Eggs from './Eggs';
 import Monsters from './Monsters';
 import Actions from './actions';
 import NameModal from './Modal';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Intro from "./intro";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import lifeEgg from './functions/lifeEgg';
 import lifeCharacter from './functions/lifeCharacter';
 import gourou from './images/benoit_superboss.png';
 import Droppable from './dragNdropComp/Droppable';
 import Draggable from './dragNdropComp/Draggable';
+import { prototype } from 'module';
+
 
 
 class App extends Component {
@@ -56,7 +58,7 @@ class App extends Component {
       breakCSS: true,
 
       // Winable
-      counterWin: 0
+      counterWin: 1
 
     }
     this.victory = this.victory.bind(this);
@@ -67,6 +69,7 @@ class App extends Component {
     this.apiEggs();
     this.apiMonster();
     this.openModal();
+
   }
 
   fixCSS() {
@@ -123,36 +126,40 @@ class App extends Component {
   }
 
   victory(egg, monster) {
-    if (this.state.userName === 'benoit') {
-      this.setState(prevState => {
-        return {
-          isWinner: true,
-          counterWin: prevState.counterWin + 1,
-          chat: ["Victory !", `  SKIPPY WIN AGAIN !!`].concat(prevState.chat)
-
-        }
-
-      })
-
+    if (this.state.counterWin >= 5) {
+      this.generique();
     } else {
-      if (egg >= monster) {
+      if (this.state.userName === 'sudo') {
         this.setState(prevState => {
           return {
             isWinner: true,
             counterWin: prevState.counterWin + 1,
-            chat: ["Victory !", ` ${this.state.nameMonster} is EGGsterminated !`].concat(prevState.chat)
+            chat: ["Victory !", `  SKIPPY WIN AGAIN !!`].concat(prevState.chat)
+
           }
 
         })
 
       } else {
-        this.setState(prevState => {
-          return {
-            isWinner: false,
-            chat: ["Fatality !", `${this.state.nameEgg} end in omelet !`].concat(prevState.chat)
-          }
+        if (egg >= monster) {
+          this.setState(prevState => {
+            return {
+              isWinner: true,
+              counterWin: prevState.counterWin + 1,
+              chat: ["Victory !", ` ${this.state.nameMonster} is EGGsterminated !`].concat(prevState.chat)
+            }
 
-        })
+          })
+
+        } else {
+          this.setState(prevState => {
+            return {
+              isWinner: false,
+              chat: ["Fatality !", `${this.state.nameEgg} end in omelet !`].concat(prevState.chat)
+            }
+
+          })
+        }
       }
     }
   }
@@ -161,7 +168,7 @@ class App extends Component {
 
   // api calls
   apiEggs() {
-    if (this.state.userName === 'benoit') {
+    if (this.state.userName === 'sudo') {
       this.setState({
         nameEgg: "Le GRAND GOUROUUU!",
         imageEgg: gourou,
@@ -216,7 +223,10 @@ class App extends Component {
     }
   }
 
+  generique = () => {
 
+    this.props.history.push("/generique");
+  }
 
 
   render() {
@@ -287,9 +297,12 @@ class App extends Component {
 
 
             <Switch>
-              <Route exact path="/generique" component={Intro} />}
+              <Route exact path="/generique" component={Intro} />
+
+
+              }
             </Switch>
-            <NavLink to={`/generique`} > <button>GENERIQUE </button> </NavLink>
+
 
           </div>
 
@@ -300,4 +313,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

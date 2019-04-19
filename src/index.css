@@ -2,19 +2,38 @@
   font-family: "gameboy";
   src: url(./images/early_gameboy/Early\ GameBoy.ttf) format("truetype");
 }
-
+.star-wars {
+  font-family: "gameboy" !important ;
+}
 .ChatBox {
   font-family: "gameboy" !important ;
   background-color: black !important;
+
   color :lightgrey;
   text-align: center;
   align-items: center;
   font-size: 0.5rem;
-  height: 25rem;;
+  height: 25rem;
+  margin-top: -15px !important;
+}
+.SSW{
+  font-size: 40px;
+  text-align: center;
+}
+.cardAttack{
+  margin-top: 2rem !important;
+}
+.cardNoBorder{
+  border:none !important;
+}
+.cardShadow {
+	-webkit-box-shadow: 0 20px 80px -6px black;
+	   -moz-box-shadow: 0 20px 80px -6px black;
+          box-shadow: 0 20px 30px -6px black;
 }
 
-
 body {
+  /* background-color: #c0c0c0 !important; */
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
