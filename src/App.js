@@ -218,12 +218,12 @@ class App extends Component {
             <span className="d-flex">
               <Droppable id="dr1" fixCSS={this.fixCSS}>
               </Droppable>
-              <span>Omelet Wars&lsaquo;/h1&rsaquo;</span>
+              <span>Omelet Wars{this.state.breakCSS && <span>&lsaquo;/h1&rsaquo;</span>}</span>
             </span>
             <img src={logo} className="App-logo" alt="logo" />
             <Droppable id="dr2">
               <Draggable id="item1">
-                <div>&lsaquo;h1&rsaquo;</div>
+                {this.state.breakCSS && <div>&lsaquo;h1&rsaquo;</div>}
               </Draggable>
             </Droppable>
           </span>
