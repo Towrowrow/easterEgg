@@ -185,7 +185,7 @@ class App extends Component {
         caliberEgg: "Christ cosmique",
         farmingEgg: "from Bugarache",
         rarityEgg: "Unique",
-        powerEgg: "Power: murmure à l'oreille des devices",
+        powerEgg: "murmure à l'oreille des devices",
         isGourou: true,
       });
     } else {
@@ -325,17 +325,24 @@ class App extends Component {
           </div>
           <div className="BLINGBLING"><strong>Rencontre les <span className="blink">Oeufs durs</span> de ta région </strong><br /><br />
             Organise des soirées omelettes avec des oeufs <br />du calibre de ton choix
-      </div>
+            </div>
           <div className="majeur">
             <p>Confirme ton âge</p>
-            <ul>
-              <li className="mb-6 ">
-                je suis majeur
-          </li>
-              <li className="mt-3">
-                je suis mineur
-          </li>
-            </ul>
+
+            <div>
+              <div>
+                <input className="mb-6 " type="radio" id="dewey" name="drone" value="dewey" />
+                <label for="dewey">Je suis majeur</label>
+              </div>
+
+              <div>
+                <input className="mt-3" type="radio" id="louie" name="drone" value="louie" />
+                <label for="louie">Je suis majeur</label>
+              </div>
+
+
+            </div>
+
           </div>
           <div>
             <button
@@ -344,7 +351,8 @@ class App extends Component {
             >X</button>
           </div>
         </div>
-      </div >
+
+      </div>
 
     );
   }
