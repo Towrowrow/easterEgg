@@ -15,6 +15,7 @@ import Droppable from './dragNdropComp/Droppable';
 import Draggable from './dragNdropComp/Draggable';
 import { prototype } from 'module';
 import Pub from './Pub';
+import PubModal from './PubModal';
 
 
 class App extends Component {
@@ -45,6 +46,8 @@ class App extends Component {
       userName: "",
       welcomeMessage: "",
 
+      pubModalVisible: false,
+
       // battle state
       isWinner: null,
 
@@ -63,6 +66,7 @@ class App extends Component {
     }
     this.victory = this.victory.bind(this);
     this.fixCSS = this.fixCSS.bind(this);
+    this.openPubModal = this.openPubModal.bind(this);
   }
 
   componentDidMount() {
@@ -77,6 +81,11 @@ class App extends Component {
     this.setState({ breakCSS: false });
   }
 
+  openPubModal() {
+    this.setState({
+      pubModalVisible: true
+    });
+  }
 
   // popup open
   openModal() {
@@ -242,6 +251,10 @@ class App extends Component {
           onChange={this.onChangeModal}
         />
 
+        <PubModal
+          visible={this.state.pubModalVisible}
+        />
+
 
         <header className="App-header">
           <span className="d-flex align-items-center">
@@ -304,7 +317,33 @@ class App extends Component {
           </div>
 
         </div>
-        <Pub />
+
+
+        <div className="pub mt-3 mb-3 d-flex justify-content-between">
+          <div className="image">
+
+          </div>
+          <div className="BLINGBLING"><strong>Rencontre les <span className="blink">Oeufs durs</span> de ta région </strong><br /><br />
+            Organise des soirées omelettes avec des oeufs <br />du calibre de ton choix
+      </div>
+          <div className="majeur">
+            <p>Confirme ton âge</p>
+            <ul>
+              <li className="mb-6 ">
+                je suis majeur
+          </li>
+              <li className="mt-3">
+                je suis mineur
+          </li>
+            </ul>
+          </div>
+          <div>
+            <button
+              onClick={() => this.openPubModal()}
+              className="griss"
+            >X</button>
+          </div>
+        </div>
       </div >
 
     );
