@@ -129,7 +129,7 @@ class App extends Component {
     if (this.state.counterWin >= 5) {
       this.generique();
     } else {
-      if (this.state.userName === 'benoit') {
+      if (this.state.userName === 'sudo') {
         this.setState(prevState => {
           return {
             isWinner: true,
@@ -168,7 +168,7 @@ class App extends Component {
 
   // api calls
   apiEggs() {
-    if (this.state.userName === 'benoit') {
+    if (this.state.userName === 'sudo') {
       this.setState({
         nameEgg: "Le GRAND GOUROUUU!",
         imageEgg: gourou,

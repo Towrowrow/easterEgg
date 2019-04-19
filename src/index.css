@@ -11,10 +11,11 @@
   text-align: center;
   align-items: center;
   font-size: 0.5rem;
-  height: 25rem;;
+  height: 25rem;
+  margin-top: -15px !important;
 }
 .cardAttack{
-  margin-top: 5rem !important;
+  margin-top: 2rem !important;
 }
 .cardNoBorder{
   border:none !important;
@@ -22,7 +23,7 @@
 .cardShadow {
 	-webkit-box-shadow: 0 20px 80px -6px black;
 	   -moz-box-shadow: 0 20px 80px -6px black;
-          box-shadow: 0 20px 80px -6px black;
+          box-shadow: 0 20px 30px -6px black;
 }
 
 body {
