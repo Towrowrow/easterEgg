@@ -6,7 +6,8 @@ const draggableStyle = {
   color: '#fff',
   backgroundColor: '#282C34',
   borderRadius: '5px',
-  margin: '1px'
+  margin: '1px',
+  display: "inline-block"
 };
 
 class Draggable extends Component {
@@ -21,7 +22,7 @@ class Draggable extends Component {
 
   render() {
     return (
-      <div
+      <span
         id={this.props.id}
         draggable="true"
         onDragStart={this.drag}
@@ -29,7 +30,7 @@ class Draggable extends Component {
         style={draggableStyle}
       >
         {this.props.children}
-      </div>
+      </span>
     );
   }
 }

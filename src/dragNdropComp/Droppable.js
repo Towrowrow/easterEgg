@@ -5,7 +5,8 @@ const droppableStyle = {
   backgroundColor: '#282C45',
   width: '45px',
   height: '35px',
-  margin: '2px'
+  margin: '2px',
+  display: "inline-block"
 };
 
 class Droppable extends Component {
@@ -20,14 +21,14 @@ class Droppable extends Component {
 
   render() {
     return (
-      <div
+      <span
         id={this.props.id}
         onDrop={this.drop}
         onDragOver={this.allowDrop}
         style={droppableStyle}
       >
         {this.props.children}
-      </div>
+      </span>
     );
   }
 }

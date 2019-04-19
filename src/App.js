@@ -213,20 +213,20 @@ class App extends Component {
 
 
         <header className="App-header">
-          <div className="d-flex align-items-center">
+          <span className="d-flex align-items-center">
             <img src={logo} className="App-logo" alt="logo" />
-            <div className="d-flex">
+            <span className="d-flex">
               <Droppable id="dr1" fixCSS={this.fixCSS}>
               </Droppable>
-              <p>Omelet Wars&lsaquo;/h1&rsaquo;</p>
-            </div>
+              <span>Omelet Wars&lsaquo;/h1&rsaquo;</span>
+            </span>
             <img src={logo} className="App-logo" alt="logo" />
             <Droppable id="dr2">
               <Draggable id="item1">
                 <div>&lsaquo;h1&rsaquo;</div>
               </Draggable>
             </Droppable>
-          </div>
+          </span>
 
         </header>
         <h2> {this.sayMyName()}</h2>

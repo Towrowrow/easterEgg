@@ -5,14 +5,16 @@ import Draggable from './Draggable';
 const wrapperStyle = {
   width: '100%',
   padding: '2px',
-  display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  display: "inline-block"
 };
 
 class DragNDrop extends Component {
   render() {
     return (
-      <div style={wrapperStyle}>
+      <span
+        style={wrapperStyle}
+      >
         <Droppable id="dr1">
           <Draggable id="item1">
             <div>&lsaquo;h1&rsaquo;</div>
@@ -20,7 +22,7 @@ class DragNDrop extends Component {
         </Droppable>
         <Droppable id="dr2">
         </Droppable>
-      </div>
+      </span>
     );
   }
 }
