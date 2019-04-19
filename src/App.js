@@ -53,7 +53,10 @@ class App extends Component {
       isGourou: false,
 
       //CSS Break
-      breakCSS: true
+      breakCSS: true,
+
+      // Winable
+      counterWin: 0
 
     }
     this.victory = this.victory.bind(this);
@@ -120,23 +123,37 @@ class App extends Component {
   }
 
   victory(egg, monster) {
-    if (egg >= monster) {
+    if (this.state.userName === 'benoit') {
       this.setState(prevState => {
         return {
           isWinner: true,
-          chat: ["Victory !", ` ${this.state.nameMonster} is EGGsterminated !`].concat(prevState.chat)
+          counterWin: prevState.counterWin + 1,
+          chat: ["Victory !", `  SKIPPY WIN AGAIN !!`].concat(prevState.chat)
+
         }
 
       })
 
     } else {
-      this.setState(prevState => {
-        return {
-          isWinner: false,
-          chat: ["Fatality !", `${this.state.nameEgg} end in omelet !`].concat(prevState.chat)
-        }
+      if (egg >= monster) {
+        this.setState(prevState => {
+          return {
+            isWinner: true,
+            counterWin: prevState.counterWin + 1,
+            chat: ["Victory !", ` ${this.state.nameMonster} is EGGsterminated !`].concat(prevState.chat)
+          }
 
-      })
+        })
+
+      } else {
+        this.setState(prevState => {
+          return {
+            isWinner: false,
+            chat: ["Fatality !", `${this.state.nameEgg} end in omelet !`].concat(prevState.chat)
+          }
+
+        })
+      }
     }
   }
 
@@ -199,6 +216,9 @@ class App extends Component {
     }
   }
 
+
+
+
   render() {
     return (
 
@@ -218,12 +238,12 @@ class App extends Component {
             <span className="d-flex">
               <Droppable id="dr1" fixCSS={this.fixCSS}>
               </Droppable>
-              <span>Omelet Wars&lsaquo;/h1&rsaquo;</span>
+              <span>Omelet Wars{this.state.breakCSS && <span>&lsaquo;/h1&rsaquo;</span>}</span>
             </span>
             <img src={logo} className="App-logo" alt="logo" />
             <Droppable id="dr2">
               <Draggable id="item1">
-                <div>&lsaquo;h1&rsaquo;</div>
+                {this.state.breakCSS && <div>&lsaquo;h1&rsaquo;</div>}
               </Draggable>
             </Droppable>
           </span>
@@ -269,12 +289,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/generique" component={Intro} />}
             </Switch>
-
-            <NavLink to={`/generique`} >
-
-              <button>Générique</button>
-
-            </NavLink>
+            <NavLink to={`/generique`} > <button>GENERIQUE </button> </NavLink>
 
           </div>
 
