@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const droppableStyle = {
-  backgroundColor: '#282C45',
+  backgroundColor: '#282C34',
   width: '45px',
   height: '35px',
   margin: '2px',
