@@ -66,3 +66,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+Projet de Hackaton 2019 WILD CODE SCHOOL réalisé en 26H, le but étant de caché des easters-Eggs dans l'appli avec une API définie comme contrainte technique.
+
+Afin de lancer le projet, prennez le "<h1>" avec la souris et le remettre en place grace au Drag and Drop et amusez vous !
